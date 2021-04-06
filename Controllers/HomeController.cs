@@ -26,6 +26,8 @@ namespace Assignment_10.Controllers
         {
             int pageSize = 5;
 
+            ViewBag.SelectedTeamName = RouteData?.Values["teamname"];
+
             return View(new IndexViewModel
             {
                 Bowlers = (context.Bowlers

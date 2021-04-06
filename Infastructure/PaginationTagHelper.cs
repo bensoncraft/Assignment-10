@@ -29,6 +29,14 @@ namespace Assignment_10.Infastructure
         [HtmlAttributeNotBound]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
+
+        //Classes for page highlighting
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
+
+        //Overriding
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper urlHelp = urlInfo.GetUrlHelper(ViewContext);
@@ -39,6 +47,14 @@ namespace Assignment_10.Infastructure
             for (int i = 1; i <= PageInfo.NumPages; i++)
             {
                 TagBuilder individualTag = new TagBuilder("a");
+
+                //Page highlighting if statement
+                if (PageClassesEnabled)
+                {
+                    individualTag.AddCssClass(PageClass);
+                    individualTag.AddCssClass(i == PageInfo.CurrentPage ? PageClassSelected : PageClassNormal);
+
+                }
 
                 KeyValuePairs["pageNum"] = i;
                 individualTag.Attributes["href"] = urlHelp.Action("Index", KeyValuePairs);

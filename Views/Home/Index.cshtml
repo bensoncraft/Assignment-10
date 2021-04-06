@@ -4,7 +4,9 @@
 
 @model IndexViewModel
 
-<table>
+<h1>@ViewBag.SelectedTeamName</h1>
+
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -57,7 +59,8 @@
     </tbody>
 </table>
 
-<div page-info="@Model.PageNumberingInfo" team-name="@Model.TeamName" page-url-teamname="@Model.TeamName">
+<div page-info="@Model.PageNumberingInfo" team-name="@Model.TeamName" page-url-teamname="@Model.TeamName"
+    page-classes-enabled="true" page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1">
 
 </div>
 
